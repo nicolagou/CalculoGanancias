@@ -1,110 +1,105 @@
 //Calculo de ganancias si hago factura A y si facturo los gastos
 
+let precioFactura = 0;
+let precioCosto = 0;
+let valorIibb = 0;
+let valorIg = 0;
+let valorIva = 0;
+let valorIvaCompra = 0;
 
-function solicitarPrecio() {
-    let precioFactura = parseFloat(prompt("Ingrese el precio de su servicio que va a cobrar en su Factura A (numero mayor a cero)"));
-    while (true) {
-        if (!isNaN(precioFactura) && precioFactura != null && precioFactura != "") {
-            //es numero
-            break;
-        } else {
-            precioFactura = parseFloat(prompt("Ingrese el precio de su servicio que va a cobrar en su Factura A (numero mayor a cero)"));
-            continue;
-        }
-    }
-}
 
-function solicitarCosto() {
-    let precioCosto = parseFloat(prompt("Ingrese los gastos facturados que le genero el servicio"));
-    while (true) {
+while (true) {
+    precioFactura = parseFloat(prompt("Ingrese el precio de su servicio que va a cobrar en su Factura A (numero mayor a cero)"));
+    if (!isNaN(precioFactura) && precioFactura != null && precioFactura != "") {
+        //es numero
+        console.log("Precio: " + precioFactura)
+        let precioCosto = parseFloat(prompt("Ingrese los gastos facturados que le genero el servicio"));
         if (!isNaN(precioCosto) && precioCosto != null && precioCosto != "") {
             //es numero
-            break;
+            console.log("Gastos: " + precioCosto)
+            let valorIibb = parseFloat(prompt("Ingrese el % de IIBB que se le retiene segun su actividad (e.g.3.5)"));
+            if (!isNaN(valorIibb) && valorIibb != null && valorIibb != "") {
+                //es numero
+                console.log("Valor IIBB: " + valorIibb + "%")
+                let valorIg = parseFloat(prompt(("Ingrese el % de Impuesto a las Ganancias que se le retiene segun su actividad (e.g.30)")));
+                if (!isNaN(valorIg) && valorIg != null && valorIg != "") {
+                    //es numero
+                    console.log("Valor IG: " + valorIg + "%")
+                    let valorIva = parseFloat(prompt("Ingrese el % de IVA que se le retiene segun su actividad (e.g.21)"));
+                    if (!isNaN(valorIva) && valorIva != null && valorIva != "") {
+                        //es numero
+                        console.log("Valor IVA: " + valorIva + "%")
+                        let valorIvaCompra = parseFloat(prompt("Ingrese el % de IVA que se aplico a la factura de los gastos realizados (e.g.21)"));
+                        if (!isNaN(valorIvaCompra) && valorIvaCompra != null && valorIvaCompra != "") {
+                            //es numero
+                            console.log("Valor IVA Compra: " + valorIvaCompra + "%")
+                            break;
+                        } else {
+                            console.log("Ingrese un numero valido de IVA Compra");
+                            continue;
+                        };
+                    } else {
+                        console.log("Ingrese un numero valido de IVA");
+                        continue;
+                    };
+                } else {
+                    console.log("Ingrese un numero valido de IG");
+                    continue;
+                };
+            } else {
+                console.log("Ingrese un numero valido de IIBB");
+                continue;
+            };
         } else {
-            precioCosto = parseFloat(prompt("Ingrese los gastos facturados que le genero el servicio"));
+            console.log("Ingrese un numero valido de Gastos");
             continue;
-        }
+        };
+    } else {
+        console.log("Ingrese un numero valido del monto de la factura");
+        continue;
     }
 }
 
-
-
-//Fucnion ingreso de IIBB de su factura
-function solicitarIibb() {
-    let valorIibb = parseFloat(prompt("Ingrese el % de IIBB que se le retiene segun su actividad (e.g.3.5)"));
-    while (true) {
-        if (!isNaN(valorIibb) && valorIibb != null && valorIibb != "") {
-            //es numero
-            break;
-        } else {
-            valorIibb = parseFloat(prompt("Ingrese el % de IIBB que se le retiene segun su actividad (e.g.3,5)"));
-            continue;
-        }
-    }
-}
-
-//Fucnion ingreso de Impuesto a las Ganancias
-function solicitarIg() {
-    let valorIg = parseFloat(prompt("Ingrese el % de IIBB que se le retiene segun su actividad (e.g.30)"));
-    while (true) {
-        if (!isNaN(valorIg) && valorIg != null && valorIg != "") {
-            //es numero
-            break;
-        } else {
-            valorIg = parseFloat(prompt("Ingrese el % de Impuesto a las Ganancias que se le retiene segun su actividad (e.g.30)"));
-            continue;
-        }
-    }
-}
-
-//Funcion ingreso de IVA de su factura
-function solicitarIVA() {
-    let valorIva = parseFloat(prompt("Ingrese el % de IVA que se le retiene segun su actividad (e.g.21)"));
-    while (true) {
-        if (!isNaN(valorIva) && valorIva != null && valorIva != "") {
-            //es numero
-            break;
-        } else {
-            valorIva = parseFloat(prompt("Ingrese el % de IVA que se le retiene segun su actividad (e.g.21)"));
-            continue;
-        }
-    }
-}
-
-
-// Funcion ingreso de IVA compra de los costos
-function solicitarIVACompra() {
-    let valorIvaCompra = parseFloat(prompt("Ingrese el % de IVA que se aplico a la factura de los gastos realizados (e.g.21)"));
-    while (true) {
-        if (!isNaN(valorIvaCompra) && valorIvaCompra != null && valorIvaCompra != "") {
-            //es numero
-            break;
-        } else {
-            valorIvaCompra = parseFloat(prompt("Ingrese el % de IVA que se aplico a la factura de los gastos realizados (e.g.21)"));
-            continue;
-        }
-    }
-}
 
 //Funcion Resultado IIBB
-let resultadoIibb = (precioFactura / (1 + valorIva / 100) * (valorIibb / 100))
-
+function calcularMontoIIBB(precioFactura, valorIva, valorIibb) {
+    return (precioFactura / (1 + valorIva / 100) * (valorIibb / 100))
+}
+let resultadoIibb = calcularMontoIIBB(precioFactura, valorIva, valorIibb)
+console.log("El monto a reducir de IIBB es: " + resultadoIibb);
 
 //Funcion Resultado IG
-let resultadoIg = (precioFactura / (1 + valorIva / 100) * (valorIg / 100))
+function calcularMontoIg(precioFactura, valorIva, valorIg) {
+    return (precioFactura / (1 + valorIva / 100) * (valorIg / 100))
+}
+let resultadoIg = calcularMontoIg(precioFactura, valorIva, valorIg)
+console.log("El monto a reducir de IG es: " + resultadoIg);
+
+//Funcion Precio sin IVA
+function calcularFacturaSinIva(precioFactura, valorIva) {
+    return (precioFactura / (1 + valorIva / 100))
+}
+let facturaSinIva = calcularMontoIg(precioFactura, valorIva)
+console.log("El monto a reducir de IG es: " + facturaSinIva);
+
+//Funcion Costos/Gastos sin IVA
+function calcularCostosSinIva(precioCosto, valorIvaCompra) {
+    return (precioCosto / (1 + valorIvaCompra / 100))
+}
+let gastosSinIva = calcularMontoIg(precioCosto, valorIvaCompra)
+console.log("El monto a reducir de IG es: " + gastosSinIva);
+
 
 
 // Funcion calcular Ganancia
-let calculoGanancia = (((precioFactura / (1 + valorIva / 100)) - (precioCosto / (1 + valorIvaCompra / 100))) - resultadoIibb - resultadoIibb)
+function calcularganancias(facturaSinIva, gastosSinIva, resultadoIibb, resultadoIg) {
+    return (facturaSinIva - gastosSinIva - resultadoIibb - resultadoIg)
+}
+let Ganancia = calcularganancias(facturaSinIva, gastosSinIva, resultadoIibb, resultadoIg)
 
+function informarResultado(factura, gastos, facturaSinIva, gastosSinIva, iibb, totalGanancias) {
+    alert("Precio cobrado: " + factura + "\n, Gastos " + gastos + "\n Precio cobrado s/IVA: " + facturaSinIva + "\nGastos s/IVA: " + gastosSinIva + "\nIIBB: " + iibb + "\nGanancias: " + totalGanancias)
+}
+let Resumen = informarResultado(precioFactura, precioCosto, facturaSinIva, gastosSinIva, resultadoIibb, Ganancia)
 
-
-
-solicitarPrecio()
-solicitarCosto()
-solicitarIibb()
-solicitarIVA()
-solicitarIVACompra()
-
-
-console.log(calculoGanancia);
+// console.log(calculoGanancia);
