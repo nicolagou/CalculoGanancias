@@ -59,7 +59,12 @@ while (true) {
         continue;
     }
 }
-
+console.log(precioFactura);
+console.log(precioCosto);
+console.log(valorIibb);
+console.log(valorIg);
+console.log(valorIva);
+console.log(valorIvaCompra);
 
 //Funcion Resultado IIBB
 function calcularMontoIIBB(precioFactura, valorIva, valorIibb) {
@@ -68,6 +73,7 @@ function calcularMontoIIBB(precioFactura, valorIva, valorIibb) {
 let resultadoIibb = calcularMontoIIBB(precioFactura, valorIva, valorIibb)
 console.log("El monto a reducir de IIBB es: " + resultadoIibb);
 
+
 //Funcion Resultado IG
 function calcularMontoIg(precioFactura, valorIva, valorIg) {
     return (precioFactura / (1 + valorIva / 100) * (valorIg / 100))
@@ -75,20 +81,21 @@ function calcularMontoIg(precioFactura, valorIva, valorIg) {
 let resultadoIg = calcularMontoIg(precioFactura, valorIva, valorIg)
 console.log("El monto a reducir de IG es: " + resultadoIg);
 
+
 //Funcion Precio sin IVA
 function calcularFacturaSinIva(precioFactura, valorIva) {
     return (precioFactura / (1 + valorIva / 100))
 }
-let facturaSinIva = calcularMontoIg(precioFactura, valorIva)
+let facturaSinIva = calcularFacturaSinIva(precioFactura, valorIva)
 console.log("El monto a reducir de IG es: " + facturaSinIva);
+
 
 //Funcion Costos/Gastos sin IVA
 function calcularCostosSinIva(precioCosto, valorIvaCompra) {
     return (precioCosto / (1 + valorIvaCompra / 100))
 }
-let gastosSinIva = calcularMontoIg(precioCosto, valorIvaCompra)
+let gastosSinIva = calcularCostosSinIva(precioCosto, valorIvaCompra)
 console.log("El monto a reducir de IG es: " + gastosSinIva);
-
 
 
 // Funcion calcular Ganancia
