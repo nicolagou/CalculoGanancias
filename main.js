@@ -59,14 +59,6 @@ while (true) {
         continue;
     }
 }
-console.log(precioFactura);
-console.log(precioCosto);
-console.log(valorIibb);
-console.log(valorIg);
-console.log(valorIva);
-console.log(valorIvaCompra);
-
-
 
 
 //Funcion Precio sin IVA
