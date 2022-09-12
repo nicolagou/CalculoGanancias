@@ -74,12 +74,16 @@ form {
     table {
         text-align: center;
         table-layout: fixed;
-        width: 100%;
+        width: auto;
         border-collapse: collapse;
-        border: 3px solid black;
+        border: 3px solid black; 
     }
     
     
     th, td {
         padding: 15px;
+      }
+
+      .table-ajuste{
+        overflow: auto;
       }
