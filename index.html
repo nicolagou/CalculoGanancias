@@ -1,13 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculo de Ganancias</title>
+    <meta name="description" content="Calcula la ganancia de tus trabajos ">
+    <link rel="stylesheet" href="./style.css">
 </head>
-<body>
-    <h1>Calculo de ganancias haciendo Factura A</h1>
+
+<body class="grid">
+    <header class="bg-grisclaro">
+        <h2 class="container">Te ayudamos a calcular las ganancias de tus negocios</h2>
+    </header>
+
+
+    <main class="bg-grisclaro">
+        <div class="container">
+            <h1 class="paddingtop">Calculo de ganancias haciendo Factura A</h1>
+
+            <section class="padding"> 
+
+                <form action="#">
+
+                    <label for="precioFactura">Ingrese el precio de su servicio que va a cobrar en su Factura A</label>
+                    <input type="number" id="precioFactura" name="precioFactura" required>
+
+                    <label for="precioCosto">Ingrese los gastos facturados que le genero el servicio</label>
+                    <input type="number" id="precioCosto" name="precioCosto" required>
+
+                    <label for="valorIibb">Ingrese el % de IIBB que se le retiene segun su actividad (e.g.3.5)</label>
+                    <input type="number" id="valorIibb" name="valorIibb" required>
+
+                    <label for="valorIg">Ingrese el % de Impuesto a las Ganancias que se le retiene segun su actividad
+                        (e.g.30)</label>
+                    <input type="number" id="valorIg" name="valorIg" required>
+
+                    <label for="valorIva">Ingrese el % de IVA que se le retiene segun su actividad (e.g.21)</label>
+                    <input type="number" id="valorIva" name="valorIva" required>
+
+                    <label for="valorIvaCompra">Ingrese el % de IVA que se aplico a la factura de los gastos realizados
+                        (e.g.21)</label>
+                    <input type="number" id="valorIvaCompra" name="valorIvaCompra" required>
+
+
+                    <button type="button" id="btnCargar">Cargar Datos</button>
+
+
+                </form>
+            </section>
+
+            <!-- <div>
+                <p>Buscar por:</p>
+            </div> -->
+
+            <div class="paddingbottom">
+                <table class="responsive-table striped" id="tabla">
+                    <thead>
+                        <tr>
+                            <th>Cobrado</th>
+                            <th>Gastos</th>
+                            <th>%IIBB</th>
+                            <th>%IG</th>
+                            <th>%IVA</th>
+                            <th>%IVA Compra</th>
+                            <th>Cobrado Sin Iva</th>
+                            <th>Gastos Sin Iva</th>
+                            <th>Retencion IIBB</th>
+                            <th>Retencion IG</th>
+                            <th>Ganancia</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="table-body">
+                        <!-- Contenido dinámico -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <h2 class="container">Contactanos para un entudio mas profundo de tus finanzas</h2>
+    </footer>
+
+
     <script src="./main.js"></script>
 </body>
+
 </html>
