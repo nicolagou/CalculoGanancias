@@ -9,7 +9,7 @@ const precioFactura = document.querySelector("#precioFactura"),
     tbody = document.querySelector("#table-body"),
     btnCargar = document.querySelector("#btnCargar");
 
-const datosFacturas = []
+const datosFacturas = [] || JSON.parse(localStorage.getItem("datosFacturas"));
 
 let facturaSinIva = 0
 let gastosSinIva = 0
@@ -56,6 +56,7 @@ function crearTablaHtml(arr) {
               </tr>`;
         tbody.innerHTML += html;
     }
+    localStorage.setItem("datosFacturas",JSON.stringify(datosFacturas))
 }
 
 //Listeners
