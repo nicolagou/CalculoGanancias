@@ -7,9 +7,11 @@ const precioFactura = document.querySelector("#precioFactura"),
     valorIva = document.querySelector("#valorIva"),
     valorIvaCompra = document.querySelector("#valorIvaCompra"),
     tbody = document.querySelector("#table-body"),
+    tbodyVer = document.querySelector("#table-bodyVer"),
     btnCargar = document.querySelector("#btnCargar");
 
 const datosFacturas = JSON.parse(localStorage.getItem("datosFacturas")) || [];
+const datosVerFacturas = JSON.parse(sessionStorage.getItem("datosVerFacturas")) || [];
 
 let facturaSinIva = 0
 let gastosSinIva = 0
@@ -41,23 +43,27 @@ function cargarFactura(arr, obj) {
 function crearTablaHtml(arr) {
     let html = "";
     for (const item of arr) {
+        
+        let {precioFactura, precioCosto, valorIibb, valorIg, valorIva, valorIvaCompra, facturaSinIva, gastosSinIva, resultadoIibb, resultadoI, ganancia} = item;
+        
         html = `<tr>
-                  <td>${item.precioFactura}</td>
-                  <td>${item.precioCosto}</td>
-                  <td>${item.valorIibb}</td>
-                  <td>${item.valorIg}</td>
-                  <td>${item.valorIva}</td>
-                  <td>${item.valorIvaCompra}</td>
-                    <td>${item.facturaSinIva}</td>
-                    <td>${item.gastosSinIva}</td>
-                    <td>${item.resultadoIibb}</td>
-                    <td>${item.resultadoIg}</td>
-                    <td>${item.ganancia}</td>
+                  <td>${precioFactura}</td>
+                  <td>${precioCosto}</td>
+                  <td>${valorIibb}</td>
+                  <td>${valorIg}</td>
+                  <td>${valorIva}</td>
+                  <td>${valorIvaCompra}</td>
+                    <td>${facturaSinIva}</td>
+                    <td>${gastosSinIva}</td>
+                    <td>${resultadoIibb}</td>
+                    <td>${resultadoIg}</td>
+                    <td>${ganancia}</td>
               </tr>`;
-        tbody.innerHTML += html;
+
+        arr === datosFacturas ? tbody.innerHTML += html : tbodyVer.innerHTML += html;
+        }
     }
-    localStorage.setItem("datosFacturas",JSON.stringify(datosFacturas))
-}
+
 
 //Listeners
 btnCargar.addEventListener("click", () => {
@@ -68,11 +74,28 @@ btnCargar.addEventListener("click", () => {
         valorIg.value,
         valorIva.value,
         valorIvaCompra.value,
-        );
+    );
 
     cargarFactura(datosFacturas, nuevaFactura);
     //resetar el html de la tabla
     tbody.innerHTML = "";
     crearTablaHtml(datosFacturas);
+    localStorage.setItem("datosFacturas", JSON.stringify(datosFacturas));
 });
 
+btnVer.addEventListener("click", () => {
+    const nuevaFactura = new crearDatosFactura(
+        precioFactura.value,
+        precioCosto.value,
+        valorIibb.value,
+        valorIg.value,
+        valorIva.value,
+        valorIvaCompra.value,
+    );
+
+    cargarFactura(datosVerFacturas, nuevaFactura);
+    //resetar el html de la tabla
+    tbodyVer.innerHTML = "";
+    crearTablaHtml(datosVerFacturas);
+    sessionStorage.setItem("datosVerFacturas", JSON.stringify(datosVerFacturas));
+});

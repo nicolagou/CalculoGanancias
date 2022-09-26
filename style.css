@@ -8,12 +8,13 @@
 
 .grid {
     display: grid;
-    grid-template-areas: 
-    "header      header      header" 
-    "main        main        main" 
-    "footer      footer      footer";
+    grid-template-areas:
+        "header      header      header"
+        "main        main        main"
+        "footer      footer      footer";
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 220px 2fr 200px; }
+    grid-template-rows: 220px 2fr 200px;
+}
 
 
 body {
@@ -21,15 +22,15 @@ body {
     font-size: 1rem;
 }
 
-header{
+header {
     grid-area: header;
 }
 
-main{
+main {
     grid-area: main;
 }
 
-footer{
+footer {
     grid-area: footer;
     background-image: url(/multimedia/fondofooter.jpg);
     background-size: inherit;
@@ -48,42 +49,50 @@ footer{
     color: black;
 }
 
-.padding{
+.padding {
     padding: 30px;
 }
-.paddingtop{
+
+.paddingtop {
     padding-top: 30px;
 }
-.paddingbottom{
+
+.paddingbottom {
     padding-bottom: 30px;
 }
 
 form {
     display: grid;
     grid-template-columns: 200px 1fr;
-    grid-gap: 16px; }
-  
-  label {
+    grid-gap: 16px;
+}
+
+label {
     grid-column: 1 / 2;
-    font-weight: 600; }
-  
-  input,
-  button {
-    grid-column: 2 / 3; }
+    font-weight: 600;
+}
 
-    table {
-        text-align: center;
-        table-layout: fixed;
-        width: auto;
-        border-collapse: collapse;
-        border: 3px solid black; 
-    }
-    
-    
-    th, td {
-        padding: 15px;
-      }
+input,
+button {
+    grid-column: 2 / 3;
+}
 
-      .table-ajuste{
-        overflow: auto;
-      }
+table {
+    text-align: center;
+    table-layout: fixed;
+    width: auto;
+    border-collapse: collapse;
+}
+
+
+th,
+td {
+    padding: 15px;
+}
+
+.table-ajuste {
+    margin-top: 30px;
+    max-height: 250px;
+    border: 3px solid black;
+    overflow: auto;
+}
