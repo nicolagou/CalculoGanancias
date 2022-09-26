@@ -91,7 +91,6 @@ td {
 }
 
 .table-ajuste {
-    margin-top: 30px;
     max-height: 250px;
     border: 3px solid black;
     overflow: auto;
