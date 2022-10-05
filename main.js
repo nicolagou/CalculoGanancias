@@ -114,3 +114,11 @@ btnVer.addEventListener("click", () => {
     crearTablaHtml(datosVerFacturas);
     sessionStorage.setItem("datosVerFacturas", JSON.stringify(datosVerFacturas));
 });
+
+fetch ("./data.json")
+.then (response=>response.json())
+.then (data=>{
+    console.log(data);
+}).catch(err=>{
+    console.log(err);
+})
