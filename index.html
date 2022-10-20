@@ -12,6 +12,7 @@
 </head>
 
 <body class="grid">
+
     <header class="bg-grisclaro">
         <h2 class="container">Te ayudamos a calcular las ganancias de tus negocios</h2>
     </header>
@@ -24,6 +25,11 @@
             <section class="padding"> 
 
                 <form action="#">
+                    <label for="cuitcliente">Ingrese el CUIT del cliente</label>
+                    <input type="number" id="cuitcliente" name="cuitcliente" required>
+
+                    <label for="nombrecliente">Ingrese el nombre del cliente</label>
+                    <input type="text" id="nombrecliente" name="nombrecliente" required>
 
                     <label for="precioFactura">Ingrese el precio de su servicio que va a cobrar en su Factura A</label>
                     <input type="number" id="precioFactura" name="precioFactura" required>
@@ -47,7 +53,7 @@
 
 
                     <button type="button" id="btnCargar">Cargar Datos</button>
-                    <button type="button" id="btnVer">Ver prueba de resultados</button>
+                    <!-- <button type="button" id="btnVer">Ver prueba de resultados</button> -->
 
 
                 </form>
@@ -56,7 +62,8 @@
             <!-- <div>
                 <p>Buscar por:</p>
             </div> -->
-            <div>
+
+            <!-- <div>
                 <h3 class="container">Prueba de Resultado:</h3>
             </div>
 
@@ -64,6 +71,8 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>CUIT</th>
+                            <th>Nombre</th>
                             <th>Cobrado</th>
                             <th>Gastos</th>
                             <th>%IIBB</th>
@@ -75,14 +84,15 @@
                             <th>Retencion IIBB</th>
                             <th>Retencion IG</th>
                             <th>Ganancia</th>
+                            <th></th>
                         </tr>
                     </thead>
 
                     <tbody id="table-bodyVer">
                         <!-- Contenido dinámico -->
-                    </tbody>
+                    <!-- </tbody>
                 </table>
-            </div>
+            </div> --> 
 
             <div>
                 <h3 class="container">Facturas Cargadas:</h3>
@@ -92,6 +102,8 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>CUIT</th>
+                            <th>Nombre</th>
                             <th>Cobrado</th>
                             <th>Gastos</th>
                             <th>%IIBB</th>
@@ -103,6 +115,7 @@
                             <th>Retencion IIBB</th>
                             <th>Retencion IG</th>
                             <th>Ganancia</th>
+                            <th></th>
                         </tr>
                     </thead>
 
