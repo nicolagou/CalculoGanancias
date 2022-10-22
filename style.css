@@ -63,7 +63,7 @@ footer {
 
 form {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 300px 1fr;
     grid-gap: 16px;
 }
 
@@ -75,6 +75,26 @@ label {
 input,
 button {
     grid-column: 2 / 3;
+}
+
+input{
+    border-radius: 4px;
+    /* max-width: 200px; */
+    height: 40px;
+    padding-left: 4px;
+}
+
+button{
+    width: fit-content;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.botonBorrar{
+    background-color: #ff606b;
+    border-radius: 10px;
+    border-color: #ff606b;
+    
 }
 
 table {

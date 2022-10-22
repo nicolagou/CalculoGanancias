@@ -13,6 +13,9 @@ const
     tbodyVer = document.querySelector("#table-bodyVer"),
     btnCargar = document.querySelector("#btnCargar");
     btnVer = document.querySelector("#btnVer");
+    busqueda = document.querySelector("#busqueda");
+    
+
 
 const datosFacturas = JSON.parse(localStorage.getItem("datosFacturas")) || [];
 // const datosVerFacturas = JSON.parse(sessionStorage.getItem("datosVerFacturas")) || [];
@@ -22,7 +25,7 @@ let gastosSinIva = 0
 let resultadoIibb = 0
 let resultadoIg = 0
 let Ganancia = 0
-let id=0
+let id = 0
 
 // CONSTRUCTOR crear un objeto (datos de factura) para el array (lista de facturas)
 function crearDatosFactura(cuitcliente, nombrecliente, precioFactura, precioCosto, valorIibb, valorIg, valorIva, valorIvaCompra, id) {
@@ -47,12 +50,14 @@ function cargarFactura(arr, obj) {
     arr.push(obj);
 }
 
+crearTablaHtml(datosFacturas);
+
 //Manipular el DOM
 function crearTablaHtml(arr) {
     let html = "";
     for (const item of arr) {
 
-        let { cuitcliente, nombrecliente, precioFactura, precioCosto, valorIibb, valorIg, valorIva, valorIvaCompra, facturaSinIva, gastosSinIva, resultadoIibb, resultadoIg, ganancia, id} = item;
+        let { cuitcliente, nombrecliente, precioFactura, precioCosto, valorIibb, valorIg, valorIva, valorIvaCompra, facturaSinIva, gastosSinIva, resultadoIibb, resultadoIg, ganancia, id } = item;
 
         html = `<tr>
                 <td>${cuitcliente}</td>
@@ -68,34 +73,33 @@ function crearTablaHtml(arr) {
                 <td>${resultadoIibb}</td>
                 <td>${resultadoIg}</td>
                 <td>${ganancia}</td>
-                <td><button type="button" id="btnBorrar${id}" >BORRAR</button></td>
+                <td><button class="botonBorrar" type="button" id="btnBorrar${id}" >BORRAR</button></td>
               </tr>`;
-              
-        tbody.innerHTML += html;      
+
+        tbody.innerHTML += html;
         // arr === datosFacturas ? tbody.innerHTML += html : tbodyVer.innerHTML += html;
     }
     borrarFactura()
 }
 
 //Funcion borrar factura por renglon
-function borrarFactura(){
+function borrarFactura() {
     datosFacturas.forEach(element => {
-        document.querySelector(`#btnBorrar${element.id}`).addEventListener("click",()=>{
-            console.log(1);
-            let indice = datosFacturas.findIndex(e=>e.id===element.id)
-            datosFacturas.splice(indice,1);
+        document.querySelector(`#btnBorrar${element.id}`).addEventListener("click", () => {
+            let indice = datosFacturas.findIndex(e => e.id === element.id)
+            datosFacturas.splice(indice, 1);
             tbody.innerHTML = "";
             crearTablaHtml(datosFacturas);
             localStorage.setItem("datosFacturas", JSON.stringify(datosFacturas));
         })
-     });        
+    });
 }
 
 // Funcion generar ID en el array
-function generarId(){
+function generarId() {
     for (let index = 0; index < datosFacturas.length; index++) {
-        datosFacturas[index].id=index;
-        }
+        datosFacturas[index].id = index;
+    }
 }
 
 //Listeners
@@ -135,36 +139,22 @@ btnCargar.addEventListener("click", () => {
 
 });
 
-// btnVer.addEventListener("click", () => {
-//     const nuevaFactura = new crearDatosFactura(
-//         cuitcliente.value,
-//         nombrecliente.value,
-//         precioFactura.value,
-//         precioCosto.value,
-//         valorIibb.value,
-//         valorIg.value,
-//         valorIva.value,
-//         valorIvaCompra.value,
-//         id++
-//     );
+// Funcion filtrar por nombre
+function filtrarPorNombre(arr,filtro){
+return arr.filter(el=>{
+    return el.nombrecliente.includes(filtro)
+})
+}
+//Funcion buscador
+function buscador() {
+    busqueda.addEventListener("input", () => {
+                let datosfiltrados = filtrarPorNombre(datosFacturas,busqueda.value)
+                tbody.innerHTML = "";
+                crearTablaHtml(datosfiltrados);
+            })
+}
 
-//     cargarFactura(datosVerFacturas, nuevaFactura);
-//     //resetar el html de la tabla
-//     tbodyVer.innerHTML = "";
-//     crearTablaHtml(datosVerFacturas);
-//     sessionStorage.setItem("datosVerFacturas", JSON.stringify(datosVerFacturas));
-// });
-
-
-
-
-
-
-
-
-
-
-
+buscador()
 
 fetch("./data.json")
     .then(response => response.json())
@@ -175,3 +165,19 @@ fetch("./data.json")
     })
 
 
+
+
+//funcion ocultar datos
+window.addEventListener('load', init, false);
+function init() {
+    let div = document.querySelector('#ocultar-y-mostrar');
+    div.style.visibility = 'visible';
+    let boton = document.querySelector('#ocultar-mostrar');
+    boton.addEventListener('click', function (e) {
+        if (div.style.visibility === 'visible') {
+            div.style.visibility = 'hidden';
+        } else {
+            div.style.visibility = 'visible';
+        }
+    }, false);
+}
