@@ -12,13 +12,13 @@ const
     tbody = document.querySelector("#table-body"),
     tbodyVer = document.querySelector("#table-bodyVer"),
     btnCargar = document.querySelector("#btnCargar");
-    btnVer = document.querySelector("#btnVer");
-    busqueda = document.querySelector("#busqueda");
-    
+btnVer = document.querySelector("#btnVer");
+busqueda = document.querySelector("#busqueda");
+
 
 
 const datosFacturas = JSON.parse(localStorage.getItem("datosFacturas")) || [];
-// const datosVerFacturas = JSON.parse(sessionStorage.getItem("datosVerFacturas")) || [];
+const radios = document.querySelectorAll('input[type="radio"]');
 
 let facturaSinIva = 0
 let gastosSinIva = 0
@@ -79,18 +79,18 @@ function crearTablaHtml(arr) {
         tbody.innerHTML += html;
         // arr === datosFacturas ? tbody.innerHTML += html : tbodyVer.innerHTML += html;
     }
-    borrarFactura()
+    borrarFactura(arr)
 }
 
 //Funcion borrar factura por renglon
-function borrarFactura() {
-    datosFacturas.forEach(element => {
+function borrarFactura(arr) {
+    arr.forEach(element => {
         document.querySelector(`#btnBorrar${element.id}`).addEventListener("click", () => {
-            let indice = datosFacturas.findIndex(e => e.id === element.id)
-            datosFacturas.splice(indice, 1);
+            let indice = arr.findIndex(e => e.id === element.id)
+            arr.splice(indice, 1);
             tbody.innerHTML = "";
-            crearTablaHtml(datosFacturas);
-            localStorage.setItem("datosFacturas", JSON.stringify(datosFacturas));
+            crearTablaHtml(arr);
+            localStorage.setItem("datosFacturas", JSON.stringify(arr));
         })
     });
 }
@@ -140,21 +140,40 @@ btnCargar.addEventListener("click", () => {
 });
 
 // Funcion filtrar por nombre
-function filtrarPorNombre(arr,filtro){
-return arr.filter(el=>{
-    return el.nombrecliente.includes(filtro)
-})
-}
-//Funcion buscador
-function buscador() {
-    busqueda.addEventListener("input", () => {
-                let datosfiltrados = filtrarPorNombre(datosFacturas,busqueda.value)
-                tbody.innerHTML = "";
-                crearTablaHtml(datosfiltrados);
-            })
+function filtrarPorNombre(arr, filtro) {
+    return arr.filter(el => {
+        return el.nombrecliente.includes(filtro)
+    })
 }
 
-buscador()
+// Funcion generica de filtrado
+function filtrar(arr, filtro, param) {
+    return arr.filter(el => {
+        return el[`${param}`].includes(filtro);
+    })
+}
+
+
+for (const radio of radios) {
+    console.log(1);
+    radio.addEventListener("change", () => {
+        console.log(2);
+        if (radio.checked){
+            //Funcion buscador
+            busqueda.addEventListener("input", () => {
+                console.log(3);
+                let datosfiltrados = filtrar(datosFacturas, busqueda.value, radio.value)
+                tbody.innerHTML = "";
+                crearTablaHtml(datosfiltrados);
+                
+            })
+        }
+    })
+
+}
+
+
+
 
 fetch("./data.json")
     .then(response => response.json())

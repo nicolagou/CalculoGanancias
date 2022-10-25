@@ -82,6 +82,7 @@ input{
     /* max-width: 200px; */
     height: 40px;
     padding-left: 4px;
+    margin: 8px;
 }
 
 button{
@@ -90,12 +91,38 @@ button{
     border-radius: 6px;
 }
 
+.contenedorBusqueda{
+    display: flex;
+    align-items: center;
+}
+
 .botonBorrar{
     background-color: #ff606b;
     border-radius: 10px;
     border-color: #ff606b;
     
 }
+
+.lupa{ 
+    width: 40px;
+    height: 40px;
+}
+
+.radio{ 
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+#busqueda{  
+    border: 0;
+    border-bottom: 1px solid;
+    border-radius: 0px;
+    background: none;
+    padding-left: 100px;
+    margin-left: 40px;
+    
+}
+
 
 table {
     text-align: center;
