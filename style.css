@@ -32,7 +32,7 @@ main {
 
 footer {
     grid-area: footer;
-    background-image: url(/multimedia/fondofooter.jpg);
+    background-image: url(./multimedia/fondofooter.jpg);
     background-size: inherit;
     color: white;
 }
@@ -44,7 +44,7 @@ footer {
 }
 
 .bg-grisclaro {
-    background-image: url(/multimedia/fondo-blanco.jpg);
+    background-image: url(./multimedia/fondo-blanco.jpg);
     background-size: inherit;
     color: black;
 }
