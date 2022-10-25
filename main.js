@@ -14,7 +14,7 @@ const
     btnCargar = document.querySelector("#btnCargar");
 btnVer = document.querySelector("#btnVer");
 busqueda = document.querySelector("#busqueda");
-
+dolar=document.querySelector("#dolar");
 
 
 const datosFacturas = JSON.parse(localStorage.getItem("datosFacturas")) || [];
@@ -26,6 +26,8 @@ let resultadoIibb = 0
 let resultadoIg = 0
 let Ganancia = 0
 let id = 0
+
+let dolarBlue
 
 // CONSTRUCTOR crear un objeto (datos de factura) para el array (lista de facturas)
 function crearDatosFactura(cuitcliente, nombrecliente, precioFactura, precioCosto, valorIibb, valorIg, valorIva, valorIvaCompra, id) {
@@ -139,12 +141,6 @@ btnCargar.addEventListener("click", () => {
 
 });
 
-// Funcion filtrar por nombre
-function filtrarPorNombre(arr, filtro) {
-    return arr.filter(el => {
-        return el.nombrecliente.includes(filtro)
-    })
-}
 
 // Funcion generica de filtrado
 function filtrar(arr, filtro, param) {
@@ -155,13 +151,10 @@ function filtrar(arr, filtro, param) {
 
 
 for (const radio of radios) {
-    console.log(1);
     radio.addEventListener("change", () => {
-        console.log(2);
         if (radio.checked){
             //Funcion buscador
             busqueda.addEventListener("input", () => {
-                console.log(3);
                 let datosfiltrados = filtrar(datosFacturas, busqueda.value, radio.value)
                 tbody.innerHTML = "";
                 crearTablaHtml(datosfiltrados);
@@ -175,13 +168,17 @@ for (const radio of radios) {
 
 
 
-fetch("./data.json")
+fetch("https://api.bluelytics.com.ar/v2/latest")
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        // console.log(data.blue.value_avg);
+        let dolarBlue = document.getElementById("dolar")
+        dolarBlue.innerHTML= `Dolar Blue: ${data.blue.value_avg}`
+
     }).catch(err => {
         console.log(err);
     })
+
 
 
 
