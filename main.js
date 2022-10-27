@@ -32,7 +32,7 @@ let dolarBlue
 // CONSTRUCTOR crear un objeto (datos de factura) para el array (lista de facturas)
 function crearDatosFactura(cuitcliente, nombrecliente, precioFactura, precioCosto, valorIibb, valorIg, valorIva, valorIvaCompra, id) {
     this.cuitcliente = cuitcliente;
-    this.nombrecliente = nombrecliente;
+    this.nombrecliente = nombrecliente.toUpperCase();
     this.precioFactura = precioFactura;
     this.precioCosto = precioCosto;
     this.valorIibb = valorIibb;
@@ -155,7 +155,7 @@ for (const radio of radios) {
         if (radio.checked){
             //Funcion buscador
             busqueda.addEventListener("input", () => {
-                let datosfiltrados = filtrar(datosFacturas, busqueda.value, radio.value)
+                let datosfiltrados = filtrar(datosFacturas, busqueda.value.toUpperCase(), radio.value)
                 tbody.innerHTML = "";
                 crearTablaHtml(datosfiltrados);
                 
