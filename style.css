@@ -13,7 +13,7 @@
         "main        main        main"
         "footer      footer      footer";
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 220px 2fr 200px;
+    grid-template-rows: 80px 2fr 200px;
 }
 
 
@@ -43,7 +43,13 @@ footer {
     padding: 30px;
 }
 
-.bg-grisclaro {
+.bg-header {
+    background-image: url(./multimedia/fondo-gris.jpg);
+    background-size: inherit;
+    color: lightgrey;
+}
+
+.bg-main {
     background-image: url(./multimedia/fondo-blanco.jpg);
     background-size: inherit;
     color: black;
