@@ -94,6 +94,8 @@ button{
 .contenedorBusqueda{
     display: flex;
     align-items: center;
+    padding-bottom: 20px;
+    justify-content: space-around;
 }
 
 .botonBorrar{
@@ -109,8 +111,19 @@ button{
 }
 
 .radio{ 
-    margin-left: 40px;
     margin-bottom: 20px;
+}
+
+.radioborder{
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    padding: 0px 10px;
+    border-radius: 40px;
+    width: 110px;
+    height: 50px;
+    margin: 5px;
+    border-width: 1px ;
 }
 
 #busqueda{  
@@ -141,3 +154,16 @@ td {
     border: 3px solid black;
     overflow: auto;
 }
+
+
+@media (max-width: 470px) {
+    form {
+      display: flex;
+      flex-direction: column; 
+    align-items: center;} 
+
+      .contenedorBusqueda{
+        display: flex;
+      flex-direction: column;
+      }
+    }

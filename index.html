@@ -38,18 +38,18 @@
                     <input type="number" id="precioCosto" name="precioCosto" required>
 
                     <label for="valorIibb">Ingrese el % de IIBB que se le retiene segun su actividad (e.g.3.5)</label>
-                    <input type="number" id="valorIibb" name="valorIibb" required>
+                    <input type="number" id="valorIibb" name="valorIibb" value="3.5" required>
 
                     <label for="valorIg">Ingrese el % de Impuesto a las Ganancias que se le retiene segun su actividad
                         (e.g.30)</label>
-                    <input type="number" id="valorIg" name="valorIg" required>
+                    <input type="number" id="valorIg" name="valorIg" value="30" required>
 
                     <label for="valorIva">Ingrese el % de IVA que se le retiene segun su actividad (e.g.21)</label>
-                    <input type="number" id="valorIva" name="valorIva" required>
+                    <input type="number" id="valorIva" name="valorIva" value="21" required>
 
                     <label for="valorIvaCompra">Ingrese el % de IVA que se aplico a la factura de los gastos realizados
                         (e.g.21)</label>
-                    <input type="number" id="valorIvaCompra" name="valorIvaCompra" required>
+                    <input type="number" id="valorIvaCompra" name="valorIvaCompra" value="21" required>
 
 
                     <button type="button" id="btnCargar">Cargar Datos</button>
@@ -64,10 +64,10 @@
                 <div class="contenedorBusqueda">
                     <img src="./multimedia/lupa.png" alt="lupadebusqueda" class="lupa">
                     <p>Buscar por: </p>
-                    <input type="radio" class="radio paddingbottom" value="nombrecliente"
-                        name="radioschequed">Nombre</label>
-                    <input type="radio" class="radio paddingbottom" value="cuitcliente"
-                        name="radioschequed">CUIT</label>
+                    <div class="radioborder"><input type="radio" class="radio paddingbottom" value="nombrecliente"
+                            name="radioschequed">Nombre</label></div>
+                    <div class="radioborder"><input type="radio" class="radio paddingbottom" value="cuitcliente"
+                            name="radioschequed">CUIT</label></div>
                     <input type="text" id="busqueda" placeholder="BUSCAR...">
                     <p1 id="dolar"></p1>
                 </div>
